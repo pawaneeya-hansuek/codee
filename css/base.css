@@ -1,0 +1,63 @@
+/* ══════════════════════════════════════
+   base.css — CSS Variables & Reset
+   Codee App
+══════════════════════════════════════ */
+
+:root {
+  --bg:       #060a10;
+  --surface:  #0d1520;
+  --surface2: #111c2e;
+  --border:   rgba(0, 255, 200, 0.12);
+  --accent:   #00ffc8;
+  --accent2:  #7b5cff;
+  --accent3:  #ff4f8b;
+  --text:     #e8f4f0;
+  --muted:    #5a7a8a;
+  --glow:     0 0 20px rgba(0, 255, 200, 0.25);
+  --glow2:    0 0 20px rgba(123, 92, 255, 0.30);
+  --radius:   12px;
+  --radius-lg:20px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scan-line overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px, rgba(0, 0, 0, 0.04) 4px
+  );
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* ── Keyframes ── */
+@keyframes gridMove   { to { transform: translate(60px, 60px); } }
+@keyframes cardIn     { from { opacity: 0; transform: translateY(28px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes floatDrift { 0%{opacity:0;transform:translateY(0)} 20%{opacity:.28} 80%{opacity:.28} 100%{opacity:0;transform:translateY(-40px)} }
+@keyframes shake      { 0%,100%{transform:none} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+@keyframes pulse      { 0%,100%{opacity:1} 50%{opacity:.3} }
+@keyframes slideIn    { from { transform: translateX(100%); } to { transform: none; } }
+
+/* ── Utility ── */
+.glow-text {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
